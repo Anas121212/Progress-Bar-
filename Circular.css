@@ -1,0 +1,197 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #cfd1e1;
+}
+
+.contanier {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px 100px;
+    flex-wrap: wrap;
+}
+
+.contanier .box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 240px;
+    height: 250px;
+
+}
+
+.contanier .box::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0%;
+    width: 20px;
+    z-index: 1;
+    height: 100%;
+    background: linear-gradient(White, white, #e3e3e3);
+    filter: blur(1px);
+}
+
+.contanier .box::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -1px;
+    width: 20px;
+    height: 100%;
+    background: #9d9d9d;
+    filter: blur(1px);
+}
+
+.contanier .box .shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+}
+
+.contanier .box .shadow::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: calc(100% + 5px);
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(rgb(0, 0, 0, 0.075), transparent);
+    transform: skewX(45deg);
+}
+
+.contanier .box .shadow::after {
+    content: "";
+    position: absolute;
+    bottom: -200%;
+    left: calc(100% + 15px);
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(rgb(0, 0, 0, 0.075), transparent);
+    transform: skewX(45deg);
+}
+
+.contanier .box .content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(#dbdae1, #a3aaba);
+    box-shadow: 5px 5px 5px rgb(0, 0, 0, 0.1),
+        15px 15px 15px rgb(0, 0, 0, 0.1),
+        20px 20px 20px rgb(0, 0, 0, 0.1),
+        50px 50px 50px rgb(0, 0, 0, 0.1),
+        inset 3px 2px 2px white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.contanier .box .content .precent {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.contanier .box .content .precent::before {
+    content: attr(data-text);
+    position: absolute;
+    inset: 20px;
+    background-color: #555;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.contanier .box .content .precent svg {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    transform: rotate(270deg);
+}
+
+.contanier .box .content .precent svg circle {
+
+    width: 100%;
+    height: 100%;
+    fill: transparent;
+    stroke-width: 3;
+    stroke: rgb(0, 0, 0, 0.05);
+    transform: translate(5px, 5px);
+}
+
+.contanier .box .content .precent svg circle:nth-child(2) {
+    stroke: #555;
+    stroke-dasharray: 440;
+    stroke-dashoffset: calc(440 - (440 * var(--num))/100);
+    opacity: 0;
+    animation: fedeIn 1s linear forwards;
+    animation-delay: 1s;
+}
+
+@keyframes fedeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.contanier .box .content .number {
+    position: relative;
+    inset: 0;
+    opacity: 0;
+    animation: fedeIn 1s linear forwards;
+    animation-delay: 2s;
+
+}
+
+
+.contanier .box .content .precent .dot {
+    position: absolute;
+    inset: 5px;
+    z-index: 10;
+    animation: dots 1s linear forwards;
+}
+
+@keyframes dots {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(calc(3.6deg * var(--num)));
+    }
+}
+
+.contanier .box .content .precent .dot::before {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 15px;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background-color: #555;
+}
